@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        *{
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #f4f4f4;
+            text-align: center;
+            font-style: italic;
+        }
+
+        header {
+            background-color: #b48799;
+            color: rgb(94, 66, 66);
+            padding: 50px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        /*.menupage {
+            background-color: #b48799;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 7px 30px;
+            font-weight: normal;
+            font-size: 15px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .menupage:hover {
+            background-color: rgb(94, 66, 66);
+            color: white;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        } */
+
+        .navigation {
+            position: absolute;
+            bottom:10px;
+            right:20px;
+        }
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .navigation a:hover {
+            color: #f4f4f4;
+            text-decoration: underline;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .specials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+      }
+
+      footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .mail a {
+        color: black;
+            text-decoration: none;
+            font-weight: normal;
+            margin-left: 1px;
+    }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/The Hunger.png" alt="The Hunger Logo" width="100px" height="auto" class="logo">
+        <h1>Welcome to <br>The Hunger Restaurant</h1>
+        <p>Where Every Bite Tells a Story</p>
+        <nav class="navigation">
+            <a href="index.html" class="menupage">Menu</a>
+            <a href="#about" class="aboutus">About Us</a>
+            <a href="#contact" class="contactus">Contact</a> 
+        </nav>
+    </header>
+    <div class="logo-background"></div>
+
+    <section id="our specials" style="padding: 40px; background-color: #f9f9f9; text-align: left;">
+        <h2>Our Specials</h2>
+        <div class="specials">
+            <div class="card">
+                <a href="index.html#chicken">
+                <img src="images/ChickenDumBiryani.webp" alt="Biryani" width="100px" height="auto">
+                </a>
+                <h3>Chicken Dum Biryani</h3>
+                <p>Aromatic rice dish with spices and tender meat.</p>
+            </div>
+            <div class="card">
+                <a href="index.html#Panner">
+                <img src="images/paneerpakoda.jpg" alt="Pakoda panner" width="100px" height="auto">
+                </a>
+                <h3>Panner Pakoda</h3>
+                <p>Crispy fried paneer fritters with a spicy dip.</p>
+            </div>
+            
+            <div class="card">
+                <a href="index.html#Combos">
+                <img src="images/Combos.jpg" alt="combo" width="100px" height="auto">
+                </a>
+                <h3>Combos</h3>
+                <p>Delicious meal combinations for a complete feast.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="gallery" style="padding: 40px; background-color: #f9f9f9; text-align: left;">
+        <h2>Gallery</h2>
+        <div class="gallery">
+            <img src="images/restaurant.png" alt="Interior Design" style="width:300px; height: auto;">
+            <img src="images/kitchendesign.png" alt="Kitchen" style="width:300px; height: auto;">
+            <img src="images/Food.jpg" alt="Food" style="width:300px; height: auto;">
+            <img src="images/Ambieance.jpg" alt="Ambiance" style="width:300px; height: auto;">
+        </div>
+    </section>
+
+    <section id="about" style="padding: 40px; background-color: #f9f9f9; text-align: left;">
+        <h2>About Us</h2>
+        <p>
+            Welcome to <strong>The Hunger Restaurant</strong> - where every bite tells a different story and every meal is a journey.
+            Our restaurant is dedicated to providing a unique dining experience that combines exquisite flavors with a warm and inviting atmosphere.
+            We believe that food is not just about sustenance; it's about creating memories and sharing moments with loved ones.
+        </p><br>
+
+        <p>
+            Our menu features a diverse selection of dishes, each crafted with the finest ingredients and a touch of creativity.
+            From traditional favorites to innovative culinary creations, we strive to offer something for everyone.
+            Whether you're here for a casual lunch, a romantic dinner, or a special celebration, our team is committed to making your experience unforgettable.
+        </p><br>
+
+        <p>
+            Whether you're grabbing a quick bite or ordering online for a chill evening with friends, 
+            our digital-first restaurant ensures your experience is smooth, fast, and satisfying. 
+            We believe in good food, good vibes, and happy bellies.
+        </p><br>
+
+        <p>
+            Thank you for being part of our journey. We’re just getting started!
+        </p>
+    </section>
+    
+    <section id="contact" style="padding: 40px; background-color: #f9f9f9; text-align: left;">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or would like to make a reservation, please contact us at:</p>
+        <p class="mail">Email: <a href="mailto:Thehunger2305@gmail.com">Thehunger2305@gmail.com</a>
+        <p>Phone: +91 12345 67890</p>
+        <p>Address: 123 Food Street, Flavor Town, FT 45678</p>
+        <p>Open Daily: 11AM - 12PM</p>
+    </section>
+    <footer>
+        <p>&copy; 2025 The Hunger Restaurant. All rights reserved.</p>
+        <p>Follow us on social media for updates and special offers!</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">Facebook</a> |
+            <a href="https://www.instagram.com" target="_blank">Instagram</a> |
+            <a href="https://www.twitter.com" target="_blank">Twitter</a>
+        </div>    
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Orders</title>
+  <style>
+    
+    * {
+            font-family: 'Segoe UI', sans-serif ;
+            margin: 0;
+            padding: 0;
+            box-sizing:border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      font-style: italic;
+    }
+  
+    .logo {
+      width: 100px;
+      height: auto;
+      margin-top: 20px;
+    }
+  
+    li {
+      background-color: #f9f9f9;
+      margin: 10px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 20px;
+      font-size: 18px;
+    }
+
+    li:hover {
+            background-color: #c9d1bc;
+            cursor: pointer;
+        }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: rgb(238, 245, 212);
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3c3739;
+      color: white;
+      transform: scale(1.02);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .menu {
+      background-color: rgb(238, 245, 212);
+      color: black;
+      border: none;
+      border-radius: 10px;
+      padding: 7px 30px;
+      font-weight: normal;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .menu:hover {
+      background-color: #3c3739;
+      color: white;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    header{
+            background-color: rgb(238, 245, 212);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        h2 {
+          margin-top: 20px;
+          text-align: center;
+          margin-bottom: 20px;
+          color: #333;
+        }
+
+        #orderList {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 0;
+    }
+
+        #orderList li {
+          list-style: none;
+          max-width: 500px;
+          width: 90%;
+          margin: 10px auto;
+          padding: 15px;
+          border-radius: 25px;
+          background-color: #fff;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          font-weight: 500;
+          font-size: 1.1rem;
+     }
+
+     #orderList li:hover{
+          background-color: #c9d1bc;
+          cursor: pointer;
+     }
+     
+     /* Make body full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Wrapper to push footer down */
+.wrapper {
+  min-height: calc(100vh - 60px); /* 60px = footer height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 60px; /* same as footer height */
+}
+
+
+.home {
+    background-color: rgb(238, 245, 212);
+      color: black;
+      border: none;
+      border-radius: 10px;
+      padding: 7px 30px;
+      font-weight: normal;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      position: absolute;
+      left: 20px;
+}
+.home:hover {
+    background-color: #3c3739;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer {
+      background-color: rgb(193, 200, 167);
+      color: black;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: black;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+  <header>
+    <a href="index.html" style="display:block; margin-top:20px;">
+           <button type="submit" class="menu" id="menus">Menu</button>
+        </a>
+        <img src="images/The Hunger.png" width="100px" height="auto" alt="The Hunger Logo" {style="align-items: left;"} class="logo">  
+        
+        <a href="home.html" style="display:block; margin-top:20px;">
+           <button type="submit" class="home" id="homes">Home</button>
+        </a>
+
+        <h1>The Hunger</h1>
+        <p>Where every bite tells a story</p>
+  </header>
+
+  <main>
+  <h2 class="yourorders">Your Orders</h2>
+  <ul id="orderList"></ul>
+
+  <button onclick="clearOrders()">Clear Orders</button>
+  <button onclick="OrdertheItems()">Order the Items</button>
+  </main>
+  </div>
+  
+  <footer>
+        <p>&copy; 2025 The Hunger Restaurant. All rights reserved.</p>
+        <p>Follow us on social media for updates and special offers!</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">Facebook</a> |
+            <a href="https://www.instagram.com" target="_blank">Instagram</a> |
+            <a href="https://www.twitter.com" target="_blank">Twitter</a>
+        </div>    
+    </footer>
+
+  <script>
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orderList = document.getElementById('orderList');
+
+    if (orders.length === 0) {
+      orderList.innerHTML = "<p>No orders yet!</p>";
+    } else {
+      orders.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        orderList.appendChild(li);
+      });
+    }
+
+    function clearOrders() {
+      localStorage.removeItem('orders');
+      location.reload();
+    }
+
+    function OrdertheItems() {
+      if(orders.length === 0){
+        alert('No items are ordered yet!');
+        return;
+      }
+
+      else{
+        alert('Your order has been placed succesfully!');
+      }
+    }
+  </script>
+
+</body>
+</html>

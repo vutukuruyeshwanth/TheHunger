@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu Card</title>
+    <style>
+        * {
+            font-family: 'Segoe UI', sans-serif ;
+            margin: 0;
+            padding: 0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background-color: #f4f4f4;
+            color: #333;
+            font-style: italic;
+        }
+
+        header{
+            background-color: rgb(238, 245, 212);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        .Menu{
+            padding: 30px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .Menu h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .Menu-categories {
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .Menu-categories h3 {
+            color: #d2691e;
+            margin-bottom: 15px;
+        }
+
+        .Menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .item{
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .item h4 {
+            margin-bottom: 5px;
+            color: #333;
+        } 
+
+        .item span{
+            position: absolute;
+            color: #666;
+            right: 20px;
+            top: 20px;
+        }
+
+        .item img {
+            width: 100px;
+            height: auto;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+
+        footer {
+      background-color: rgb(193, 200, 167);
+      color: black;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: black;
+      text-decoration: none;
+    }
+
+        .item:hover {
+            background-color: #c9d1bc;
+            transform: scale(1.02);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .vieworders {
+            height: 30px;
+            width: 120px;
+            border: 1px solid rgb(238, 245, 212);
+            border-radius: 10px;
+            color: black;
+            background-color: rgb(238, 245, 212);
+            cursor: pointer;
+            font-weight: normal;
+            font-size: 16px;
+            text-decoration: none;
+            position: absolute;
+            right: 20px;
+        }
+
+        .vieworders:hover {
+            background-color: #3c3739;
+            color: white;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }   
+
+        /* Mobile View */
+@media only screen and (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
+/* Tablet View */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  .card {
+    width: 45%;
+  }
+}
+
+/* Desktop View */
+@media only screen and (min-width: 993px) {
+  .card {
+    width: 30%;
+  }
+}
+
+h1{
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 0%;
+    margin: 0%;
+}
+
+#menuBox {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#menuBox ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#menuBox ul li {
+  margin: 10px 0;
+}
+
+#menuBox ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+.Menubutton{
+    height: 70px;
+    width: 70px;
+    border: 1px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    color: black;
+    background-color: rgb(238, 245, 212);
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.home {
+    background-color: rgb(238, 245, 212);
+      color: black;
+      border: none;
+      border-radius: 10px;
+      padding: 7px 30px;
+      font-weight: normal;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      position: absolute;
+      left: 20px;
+}
+.home:hover {
+    background-color: #3c3739;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Orders.html" style="display:block; margin-top:20px;">
+           <button type="submit" class="vieworders" id="View">View Orders</button>
+        </a>
+        <img src="images/The Hunger.png" width="100px" height="auto" alt="The Hunger Logo" {style="align-items: left;"} class="logo"> 
+
+        <a href="home.html" style="display:block; margin-top:20px;">
+           <button type="submit" class="home" id="homes">Home</button>
+        </a>
+
+        <h1>The Hunger</h1>
+        <p>Where every bite tells a story</p>
+    </header>
+
+    <main>
+        <section class="Menu">
+            <h2>Menu</h2>
+            <div class="Menu-categories">
+                <h3 id="Starters">Starters</h3>
+                <div class="Menu-items">
+                    <div class="item">
+                        <img src="images/chicken65.webp" alt="Chicken 65" width="100px" height="auto">
+                        <h4>Chicken 65</h4>
+                        <span class="price">₹156</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/Chickenlollipop.jpg" alt="Chicken Lollipop" width="100px" height="auto">
+                        <h4>Chicken Lollipop</h4>
+                        <span class="price">₹176</span>
+                    </div>
+                    
+                    <div class="item">
+                        <img src="images/paneer65.jpg" alt="Panner 65" width="100px" height="auto">
+                        <h4>Panner 65</h4>
+                        <span class="price">₹198</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/BabyCornManchurian.jpg" alt="Baby Corn Manchurian" width="100px" height="auto">
+                        <h4>Baby Corn Manchurian</h4>
+                        <span class="price">₹198</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/mushroom65.jpg" alt="Mushroom 65" width="100px" height="auto">
+                        <h4>Mushroom 65</h4>
+                        <span class="price">₹176</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/tandoorichicken.jpg" alt="Tandoori Chicken Full" width="100px" height="auto">
+                        <h4>Tandoori Chicken Full</h4>
+                        <span class="price">₹538</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/Tandoorichicken.webp" alt="Tandoori Chicken Half" width="100px" height="auto">
+                        <h4>Tandoori Chicken Half</h4>
+                        <span class="price">₹318</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/chillipaneer.jpg" alt="Chilli Panner" width="100px" height="auto">
+                        <h4>Chilli Panner</h4>
+                        <span class="price">₹176</span>
+                    </div>
+
+                    <div class="item" id="Panner">
+                        <img src="images/paneerpakoda.jpg" alt="Panner Pakoda" width="100px" height="auto">
+                        <h4>Panner Pakoda</h4>
+                        <span class="price">₹176</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/babycorn65.jpeg" alt="Baby Corn 65" width="100px" height="auto">
+                        <h4>Baby Corn 65</h4>
+                        <span class="price">₹198</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Menu-categories">
+                <h3 id="Main Course">Main Course</h3>
+                <div class="Menu-items">
+                    <div class="item">
+                        <img src="images/chickencurry.jpg" alt="Chicken Curry" width="100px" height="auto">
+                        <h4>Chicken Curry</h4>
+                        <span class="price">₹256</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/ButterChicken.jpg" alt="ButterChicken" width="100px" height="auto">
+                        <h4>Butter Chicken</h4>
+                        <span class="price">₹256</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/ChickenTikkaMasala.jpg" alt="ChickenTikkaMasala" width="100px" height="auto">
+                        <h4>Chicken Tikka Masala</h4>
+                        <span class="price">₹298</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/ChickenMughlai.jpg" alt="ChickenMughlai" width="100px" height="auto">
+                        <h4>Chicken Mughlai</h4>
+                        <span class="price">₹307</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/CashewChickenCurry.jpg" alt="CashewChickenCurry" width="100px" height="auto">
+                        <h4>Cashew Chicken Curry</h4>
+                        <span class="price">₹317</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/paneerbuttermasala.webp" alt="PannerButterMasala" width="100px" height="auto">
+                        <h4>Panner Butter Masala</h4>
+                        <span class="price">₹256</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/KadaiPanner.jpg" alt="KadaiPanner" width="100px" height="auto">
+                        <h4>Kadai Panner</h4>
+                        <span class="price">₹217</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/KajuPaneer.webp" alt="KajuPaneer" width="100px" height="auto">
+                        <h4>kaju Panner</h4>
+                        <span class="price">₹327</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/MethiChaman.jpg" alt="MethiChaman" width="100px" height="auto">
+                        <h4>Methi Chaman</h4>
+                        <span class="price">₹256</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/EggMasala.jpg" alt="EggMasala" width="100px" height="auto">
+                        <h4>Egg Masala</h4>
+                        <span class="price">₹153</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Menu-categories">
+                <h3 id="Rice&Biryanis">Rice & Biryanis</h3>
+                <div class="Menu-items">
+                    <div class="item">
+                        <img src="images/Chicken Biryani.jpg" alt="ChickenBiryani" width="100px" height="auto">
+                        <h4>Chicken Biryani</h4>
+                        <span class="price">₹256</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/MuttonBiryani.jpg" alt="MuttonBiryani" width="100px" height="auto">
+                        <h4>Mutton Biryani</h4>
+                        <span class="price">₹396</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/EggBiryani.jpg" alt="EggBiryani" width="100px" height="auto">
+                        <h4>Egg Biryani</h4>
+                        <span class="price">₹156</span>
+                    </div>
+
+                    <div class="item" id="chicken">
+                        <img src="images/ChickenDumBiryani.webp" alt="ChickenDumBiryani" width="100px" height="auto">
+                        <h4>Chicken Dum Biryani</h4>
+                        <span class="price">₹301</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/VegBiryani.jpg" alt="VegBiryani" width="100px" height="auto">
+                        <h4>Veg Biryani</h4>
+                        <span class="price">₹256</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/GonguraMuttonPulao.jpg" alt="GonguraMuttonPulao" width="100px" height="auto">
+                        <h4>Gongura Mutton Pulao</h4>
+                        <span class="price">₹456</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/SpecialVegBiryani.jpg" alt="SpecialVegBiryani" width="100px" height="auto">
+                        <h4>Special Veg Biryani</h4>
+                        <span class="price">₹256</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/paneerbiryani.jpg" alt="PannerBiryani" width="100px" height="auto">
+                        <h4>Panner Biryani</h4>
+                        <span class="price">₹356</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/chickenJointbiryani.webp" alt="ChickenJointBiryani" width="100px" height="auto">
+                        <h4>Chicken Joint Biryani</h4>
+                        <span class="price">₹362</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/SplPrawnsBiryani.jpeg" alt="SplPrawnsBiryani" width="100px" height="auto">
+                        <h4>Spl Prawns Biryani</h4>
+                        <span class="price">₹490</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/WhiteRice.jpg" alt="WhiteRice" width="100px" height="auto">
+                        <h4>White Rice</h4>
+                        <span class="price">₹78</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/DalRice.jpg" alt="DalRice" width="100px" height="auto">
+                        <h4>Dal Rice</h4>
+                        <span class="price">₹99</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/JeeraRice.jpg" alt="JeeraRice" width="100px" height="auto">
+                        <h4>Jeera Rice</h4>
+                        <span class="price">₹175</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/curdrice.jpg" alt="CurdRice" width="100px" height="auto">
+                        <h4>Curd Rice</h4>
+                        <span class="price">₹122</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Menu-categories">
+                <h3 id="Beverages">Beverages</h3>
+                <div class="Menu-items">
+                    <div class="item">
+                        <img src="images/SoftDrinks.jpg" alt="Soft Drinks" width="100px" height="auto">
+                        <h4>Soft Drinks</h4>
+                        <span class="price">₹50</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/Tea.jpg" alt="Tea" width="100px" height="auto">
+                        <h4>Tea</h4>
+                        <span class="price">₹30</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/Coffee.jpg" alt="Coffee" width="100px" height="auto">
+                        <h4>Coffee</h4>
+                        <span class="price">₹40</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/ColdCoffee.jpg" alt="ColdCoffee" width="100px" height="auto">
+                        <h4>Cold Coffee</h4>
+                        <span class="price">₹60</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/hotchocolate.webp" alt="HotChocolate" width="100px" height="auto">
+                        <h4>Hot Chocolate</h4>
+                        <span class="price">₹70</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/GreenTea.avif" alt="GreenTea" width="100px" height="auto">
+                        <h4>Green Tea</h4>
+                        <span class="price">₹50</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/Lemonade.jpg" alt="Lemonade" width="100px" height="auto">
+                        <h4>Lemonade</h4>
+                        <span class="price">₹40</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/Buttermilk.webp" alt="Buttermilk" width="100px" height="auto">
+                        <h4>Butter milk</h4>
+                        <span class="price">₹30</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/MockTails.jpg" alt="MockTails" width="100px" height="auto">
+                        <h4>Mock Tails</h4>
+                        <span class="price">₹60</span>
+                    </div>   
+                        
+                    <div class="item">
+                        <img src="images/MilkShakes.jpg" alt="Milkshakes" width="100px" height="auto">
+                        <h4>Milk Shakes</h4>
+                        <span class="price">₹50</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/waterbottles.png" alt="Water" width="100px" height="auto">
+                        <h4>Water</h4>
+                        <span class="price">₹25</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Menu-categories">
+                <h3 id="Desserts">Desserts</h3>
+                <div class="Menu-items">
+                    <div class="item">
+                        <img src="images/IceCream.jpg" alt="IceCream" width="100px" height="auto">
+                        <h4>Ice Cream</h4>
+                        <span class="price">₹80</span>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/cake.jpg" alt="Cake" width="100px" height="auto">
+                        <h4>Cake</h4>
+                        <span class="price">₹120</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/pastry.jpg" alt="Pastry" width="100px" height="auto">
+                        <h4>Pastry</h4>
+                        <span class="price">₹60</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/Brownie.jpg" alt="Brownie" width="100px" height="auto">
+                        <h4>Brownie</h4>
+                        <span class="price">₹70</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/Pudding.jpg" alt="Pudding" width="100px" height="auto">
+                        <h4>Pudding</h4>
+                        <span class="price">₹90</span>
+                    </div>
+                        
+                    <div class="item">
+                        <img src="images/Donut.jpg" alt="Donut" width="100px" height="auto">
+                        <h4>Donut</h4>
+                        <span class="price">₹50</span>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="Menu-categories">
+                <h3 id="Combos">Combos</h3>
+                <div class="Menu-items">
+                    <div class="item">
+                        <h4>Chicken Biryani + Chicken Fry Biryani + Drink</h4>
+                        <span class="price">₹650</span>
+                    </div>
+
+                    <div class="item">
+                        <h4>Veg Meal</h4>
+                        <span class="price">₹250</span>
+                    </div>
+                        
+                    <div class="item">
+                        <h4>Chicken Meal</h4>
+                        <span class="price">₹351</span>
+                    </div>
+                        
+                    <div class="item">
+                        <h4>Mutton Biryani + Mutton Pulao + Drink</h4>
+                        <span class="price">₹824</span>
+                    </div>
+                        
+                    <div class="item">
+                        <h4>Veg Biryani + Veg Fried Rice + Veg Manchuria + Drink</h4>
+                        <span class="price">₹714</span>
+                    </div>  
+                </div>
+            </div> 
+        </section>    
+    </main>
+
+    <!--<a href="orders.html" style="display:block; text-align:center; margin-top:20px;">
+    <button style="padding:10px 20px; font-size:1em;">View Orders</button>
+    </a> -->
+
+    <div class="nav" id="menuBox" class="hidden">
+        <ul>
+        <li><a href="#Starters">Starters</a></li>
+        <li><a href="#Main Course">Main Course</a></li>
+        <li><a href="#Rice&Biryanis">Rice & Biryanis</a></li>
+        <li><a href="#Beverages">Beverages</a></li>
+        <li><a href="#Desserts">Desserts</a></li>
+        <li><a href="#Combos">Combos</a></li>
+        <li><a href="#View">Menu</a></li>
+        </ul>
+    </div>
+    <button type="submit" class="Menubutton" id="menuButton">Menu</button>
+
+    <footer>
+        <p>&copy; 2025 The Hunger Restaurant. All rights reserved.</p>
+        <p>Follow us on social media for updates and special offers!</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">Facebook</a> |
+            <a href="https://www.instagram.com" target="_blank">Instagram</a> |
+            <a href="https://www.twitter.com" target="_blank">Twitter</a>
+        </div>    
+    </footer> 
+
+    <script>
+    function addToOrder(item) {
+  let orders = JSON.parse(localStorage.getItem('orders')) || [];
+  orders.push(item);
+  localStorage.setItem('orders', JSON.stringify(orders));
+  alert(`${item} has been added to your order!`);
+}
+    const items = document.querySelectorAll('.item');
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const itemName = item.querySelector('h4').textContent;
+        addToOrder(itemName);
+      });
+    });
+
+
+  const menuButton = document.getElementById('menuButton');
+  const menuBox = document.getElementById('menuBox');
+
+  menuBox.classList.add('hidden');
+
+  menuButton.addEventListener('click', () => {
+    menuBox.classList.toggle('hidden');
+  });
+
+  // Optional: Close menu after clicking a link
+  document.querySelectorAll('#menuBox a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuBox.classList.add('hidden');
+    });
+  });  
+</script>
+
+
+</body>
+</html>
